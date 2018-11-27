@@ -1,0 +1,53 @@
+#
+# Description
+# -----------
+# This table stores the devices on i2c for the local computer.
+#
+# Fields
+# ------
+# id:                       The ID assigned to the record.
+# uuid:                     The Universal Unique ID.
+# tnid:                     The Tenant ID the record belongs to.
+#
+# bus_number:               The number of the bus, 0 - 255
+# address:                  The address of the device, 0 - 0x77
+#
+# status:                   The current status of the device.
+#
+#                               10 - Active
+#                               50 - Detached
+# 
+# device_type:              The type of device.
+#
+#                               0 - Unknown
+#                               100 - bme280 sensor
+#
+# name:                     The name assigned to the device.
+#
+# flags:                    The options for this device.
+#
+#                               0x01 - Poll every minute for data
+#                               0x02 - 
+#                               0x04 - 
+#                               0x08 - 
+#
+# date_added:               The UTC date and time the record was added.
+# last_updated:             The UTC date and time the record was last update.
+#
+create table qruqsp_i2c_devices (
+    id int not null auto_increment,
+    uuid char(36) not null,
+    tnid int not null,
+    bus_number tinyint unsigned not null,
+    address tinyint unsigned not null,
+    status tinyint unsigned not null,
+    device_type smallint unsigned not null,
+    name varchar(150) not null,
+    flags int not null,
+    date_added datetime not null,
+    last_updated datetime not null,
+    primary key (id),
+    unique index (uuid),
+    unique index (bus_number, address),
+    index sync (tnid, uuid, last_updated)
+) ENGINE='InnoDB', COMMENT='v1.01';
