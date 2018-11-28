@@ -49,7 +49,8 @@ if( isset($ciniki['config']['qruqsp.i2c']['tnid']) ) {
 ciniki_core_loadMethod($ciniki, 'qruqsp', 'i2c', 'private', 'devicesProbe');
 $rc = qruqsp_i2c_devicesProbe($ciniki, $tnid);
 if( $rc['stat'] != 'ok' ) {
-    ciniki_cron_logMsg($ciniki, $tnid, array('code'=>'qruqsp.i2c.4', 'msg'=>'Unable to poll devices', 'err'=>$rc['err']));
+    ciniki_core_loadMethod($ciniki, 'ciniki', 'cron', 'private', 'logMsg');
+    ciniki_cron_logMsg($ciniki, $tnid, array('code'=>'qruqsp.i2c.4', 'severity'=>50, 'msg'=>'Unable to poll devices', 'err'=>$rc['err']));
 }
 
 exit(0);
