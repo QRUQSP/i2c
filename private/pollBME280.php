@@ -39,6 +39,17 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
         return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.18', 'msg'=>'Unable to decode bme280 python script'));
     }
 
+    //
+    // Add the current GPS coordinates to the response
+    //
+    ciniki_core_loadMethod($ciniki, 'ciniki', 'tenants', 'hooks', 'tenantGPSCoords');
+    $rc = ciniki_tenants_hooks_tenantGPSCoords($ciniki, $tnid, array());
+    if( $rc['stat'] != 'ok' ) {
+        return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.19', 'msg'=>'Unable to get GPS Coordinates', 'err'=>$rc['err']));
+    }
+    $rsp['latitude'] = $rc['latitude'];
+    $rsp['longitude'] = $rc['longitude'];
+
     return $rsp;
 }
 ?>
