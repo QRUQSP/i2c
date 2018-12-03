@@ -30,7 +30,7 @@ function qruqsp_i2c_hooks_uiSettings(&$ciniki, $tnid, $args) {
             )
         ) {
         $menu_item = array(
-            'priority'=>5000,
+            'priority'=>2000,
             'label'=>'i2c',
             'edit'=>array('app'=>'qruqsp.i2c.main'),
             );

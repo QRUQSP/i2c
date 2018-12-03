@@ -49,6 +49,7 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
     }
     $rsp['latitude'] = $rc['latitude'];
     $rsp['longitude'] = $rc['longitude'];
+    $rsp['altitude'] = $rc['altitude'];
 
     return $rsp;
 }

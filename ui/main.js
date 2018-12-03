@@ -65,7 +65,6 @@ function qruqsp_i2c_main() {
         });
     }
     this.menu.probe = function() {
-        console.log('probing');
         M.api.getJSONCb('qruqsp.i2c.deviceList', {'tnid':M.curTenantID, 'probe':'yes'}, function(rsp) {
             if( rsp.stat != 'ok' ) {
                 M.api.err(rsp);
@@ -74,7 +73,7 @@ function qruqsp_i2c_main() {
             var p = M.qruqsp_i2c_main.menu;
             p.data = rsp;
             p.refresh();
-            p.show(cb);
+            p.show();
         });
     }
     this.menu.addButton('probe', 'Probe', 'M.qruqsp_i2c_main.menu.probe();');
