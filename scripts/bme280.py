@@ -184,8 +184,8 @@ def main():
     "i2c-data-type": "weather",
     "chip-id": chip_id,
     "chip-version": chip_version,
-    "temperature": temperature,
-    "pressure": pressure,
+    "celsius": temperature,
+    "millibars": pressure,
     "humidity": humidity,
   }
   print json.dumps(data);

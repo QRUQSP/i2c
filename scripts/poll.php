@@ -39,6 +39,7 @@ if( isset($ciniki['config']['qruqsp.i2c']['tnid']) ) {
 }
 
 ciniki_core_loadMethod($ciniki, 'ciniki', 'core', 'private', 'dbQuote');
+ciniki_core_loadMethod($ciniki, 'ciniki', 'cron', 'private', 'logMsg');
 
 //
 // Load tenant modules

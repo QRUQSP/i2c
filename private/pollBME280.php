@@ -39,6 +39,8 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
         return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.18', 'msg'=>'Unable to decode bme280 python script'));
     }
 
+    $dt = new DateTime('now', new DateTimezone('UTC'));
+
     //
     // Add the current GPS coordinates to the response
     //
@@ -47,9 +49,12 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
     if( $rc['stat'] != 'ok' ) {
         return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.19', 'msg'=>'Unable to get GPS Coordinates', 'err'=>$rc['err']));
     }
+    $rsp['station'] = $ciniki['config']['ciniki.core']['sync.name'];
     $rsp['latitude'] = $rc['latitude'];
     $rsp['longitude'] = $rc['longitude'];
     $rsp['altitude'] = $rc['altitude'];
+    $rsp['sensor'] = 'bme280';
+    $rsp['sample_date'] = $dt->format('Y-m-d H:i:s');
 
     return $rsp;
 }

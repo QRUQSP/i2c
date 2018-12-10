@@ -53,6 +53,8 @@ function qruqsp_i2c_devicesPoll(&$ciniki, $tnid) {
             //
             if( $rc != null && $rc['stat'] == 'ok' && $rc['i2c-data-type'] != '' ) {
                 $data = $rc;
+                $data['object'] = 'qruqsp.i2c.device';
+                $data['object_id'] = $device['id'];
                 foreach($ciniki['tenant']['modules'] as $module => $m) {
                     list($pkg, $mod) = explode('.', $module);
                     $rc = ciniki_core_loadMethod($ciniki, $pkg, $mod, 'hooks', $data['i2c-data-type'] . 'DataReceived');
