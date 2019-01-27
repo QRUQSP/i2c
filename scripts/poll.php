@@ -35,7 +35,7 @@ $ciniki['session']['user']['id'] = -3;  // Setup to Ciniki Robot
 //
 $tnid = $ciniki['config']['ciniki.core']['master_tnid'];
 if( isset($ciniki['config']['qruqsp.i2c']['tnid']) ) {
-    $tnid = $ciniki['config']['ciniki.core']['tnid'];
+    $tnid = $ciniki['config']['qruqsp.i2c']['tnid'];
 }
 
 ciniki_core_loadMethod($ciniki, 'ciniki', 'core', 'private', 'dbQuote');
