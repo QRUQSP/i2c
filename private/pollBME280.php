@@ -26,6 +26,7 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
     }
 
     $cmd = $python . ' ' . $mod_dir . '/i2c/scripts/bme280.py ' . $bus . ' ' . dechex($address);
+    error_log($cmd);
 
     $output = shell_exec($cmd);
 
