@@ -63,7 +63,7 @@ if( $rc['stat'] != 'ok' ) {
     return $rc;
 }
 if( !isset($rc['modules']) ) {
-    return array('stat'=>'fail', 'err'=>array('code'=>'ciniki.tenants.15', 'msg'=>'No modules enabled'));
+    return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.20', 'msg'=>'No modules enabled'));
 }
 $ciniki['tenant']['modules'] = $rc['modules'];
 

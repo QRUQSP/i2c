@@ -30,7 +30,7 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
     $output = shell_exec($cmd);
 
     if( $output === false ) {
-        return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.18', 'msg'=>'Unable to execute bme280 python script'));
+        return array('stat'=>'fail', 'err'=>array('code'=>'qruqsp.i2c.21', 'msg'=>'Unable to execute bme280 python script'));
     }
 
     $rsp = json_decode($output, true);
