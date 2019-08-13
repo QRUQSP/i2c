@@ -27,7 +27,7 @@
 # flags:                    The options for this device.
 #
 #                               0x01 - Poll every minute for data
-#                               0x02 - 
+#                               0x02 - Correct for altitude
 #                               0x04 - 
 #                               0x08 - 
 #
@@ -50,4 +50,4 @@ create table qruqsp_i2c_devices (
     unique index (uuid),
     unique index (bus_number, address),
     index sync (tnid, uuid, last_updated)
-) ENGINE='InnoDB', COMMENT='v1.01';
+) ENGINE='InnoDB', COMMENT='v1.02';

@@ -90,7 +90,8 @@ function qruqsp_i2c_main() {
 //            'status':{'label':'Status', 'type':'toggle', 'toggles':{'10':'Active', '50':'Detached'}},
             'device_type':{'label':'Type', 'type':'select', 'options':this.deviceTypes},
             'name':{'label':'Name', 'type':'text'},
-            'flags':{'label':'Options', 'type':'flags', 'flags':{'1':{'name':'Poll'}}},
+            'flags':{'label':'Options', 'type':'flags', 'flags':{'1':{'name':'Poll'}, '2':{'name':'Altitute Correction'}}},
+//            'altitude':{'label':'Altitude (meters)', 'type':'text', 'size':'small'},
             }},
         '_buttons':{'label':'', 'buttons':{
             'save':{'label':'Save', 'fn':'M.qruqsp_i2c_main.device.save();'},

@@ -12,7 +12,7 @@
 // Returns
 // ---------
 // 
-function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
+function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $device) {
 
     $python = '/usr/bin/python';
     if( isset($ciniki['config']['ciniki.core']['python']) && $ciniki['config']['ciniki.core']['python'] != '' ) {
@@ -25,7 +25,7 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
         $mod_dir = $ciniki['config']['ciniki.core']['root_dir'] . '/qruqsp-mods';
     }
 
-    $cmd = $python . ' ' . $mod_dir . '/i2c/scripts/bme280.py ' . $bus . ' ' . dechex($address);
+    $cmd = $python . ' ' . $mod_dir . '/i2c/scripts/bme280.py ' . $device['bus_number'] . ' ' . dechex($device['address']);
 
     $output = shell_exec($cmd);
 
@@ -53,6 +53,12 @@ function qruqsp_i2c_pollBME280(&$ciniki, $tnid, $bus, $address) {
     $rsp['latitude'] = $rc['latitude'];
     $rsp['longitude'] = $rc['longitude'];
     $rsp['altitude'] = $rc['altitude'];
+    //
+    // Check if pressure should be corrected for altitude
+    //
+    if( isset($device['flags']) && ($device['flags']&0x02) == 0x02 && $rsp['altitude'] != 0 ) {
+        $rsp['millibars'] = $rsp['millibars'] * pow(1-((0.0065 * $rsp['altitude'])/($rsp['celsius'] + (0.0065 * $rsp['altitude']) + 273.15)), -5.257);
+    }
     $rsp['sensor'] = 'bme280';
     $rsp['sample_date'] = $dt->format('Y-m-d H:i:s');
 
