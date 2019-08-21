@@ -32,6 +32,7 @@ function qruqsp_i2c_hooks_uiSettings(&$ciniki, $tnid, $args) {
         $menu_item = array(
             'priority'=>2000,
             'label'=>'i2c',
+            'helpcontent'=>'Manage i2c sensors connected to your system.',
             'edit'=>array('app'=>'qruqsp.i2c.main'),
             );
         $rsp['menu_items'][] = $menu_item;

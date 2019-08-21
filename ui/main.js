@@ -78,6 +78,20 @@ function qruqsp_i2c_main() {
     }
     this.menu.addButton('probe', 'Probe', 'M.qruqsp_i2c_main.menu.probe();');
     this.menu.addClose('Back');
+    this.menu.helpSections = function() {
+        return {
+            '_1':{'label':'I2C devices', 'type':'htmlcontent', 
+                'html':'These are devices connected to the i2c bus on the Raspberry Pi. '
+                    + 'Currently QRUQSP only supports bme280, which provides temperature, humidity and pressure is supported. '
+                    + 'More devices will be added in the future.',
+                },
+            '_2':{'label':'Finding Devices', 'type':'htmlcontent', 
+                'html':'To look for new devices, click on Probe. '
+                    + 'This will return the updated list of devices found on your Raspberry Pi. '
+                    + 'Click on the device to get it setup.',
+                },
+            };
+    }
 
     //
     // The panel to edit i2c Device
