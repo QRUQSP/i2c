@@ -160,15 +160,15 @@ function qruqsp_i2c_main() {
         }
     }
     this.device.remove = function() {
-        if( confirm('Are you sure you want to remove device?') ) {
-            M.api.getJSONCb('qruqsp.i2c.deviceDelete', {'tnid':M.curTenantID, 'device_id':this.device_id}, function(rsp) {
+        M.confirm('Are you sure you want to remove device?',null,function() {
+            M.api.getJSONCb('qruqsp.i2c.deviceDelete', {'tnid':M.curTenantID, 'device_id':M.qruqsp_i2c_main.device.device_id}, function(rsp) {
                 if( rsp.stat != 'ok' ) {
                     M.api.err(rsp);
                     return false;
                 }
                 M.qruqsp_i2c_main.device.close();
             });
-        }
+        });
     }
     this.device.addButton('save', 'Save', 'M.qruqsp_i2c_main.device.save();');
     this.device.addClose('Cancel');
@@ -190,7 +190,7 @@ function qruqsp_i2c_main() {
         //
         var ac = M.createContainer(ap, 'qruqsp_i2c_main', 'yes');
         if( ac == null ) {
-            alert('App Error');
+            M.alert('App Error');
             return false;
         }
         
